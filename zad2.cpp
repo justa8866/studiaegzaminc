@@ -1,5 +1,7 @@
-#include<iostream>
-#include<map>
+#include <iostream>
+#include <map>
+#include <time.h>
+#include <random>
 
 using namespace std;
 
@@ -11,6 +13,11 @@ void print(const M &zawodnicy){
 }
 
 int main(){
+  random_device rd;
+  mt19937 gen(rd());
+  uniform_int_distribution<int> dist1_5(1,5);
+  uniform_int_distribution<int> dist6_12(6,12);
+
   map<int, string> zawodnicy {
     {1, "Marek"},
     {2, "Tom"},
@@ -34,6 +41,9 @@ int main(){
   
   zaw.key() = 20;
   zawodnicy.insert(move(zaw));
+
+  int random = dist1_5(gen);
+  cout << random;
 
   print(zawodnicy);
 }
