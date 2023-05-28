@@ -1,5 +1,7 @@
-#include<iostream>
-#include<map>
+#include <iostream>
+#include <map>
+#include <time.h>
+#include <random>
 
 using namespace std;
 
@@ -11,6 +13,11 @@ void print(const M &zawodnicy){
 }
 
 int main(){
+  random_device rd;
+  mt19937 gen(rd());
+  uniform_int_distribution<int> dist1_5(1,5);
+  uniform_int_distribution<int> dist6_12(6,12);
+
   map<int, string> zawodnicy {
     {1, "Marek"},
     {2, "Tom"},
@@ -27,13 +34,36 @@ int main(){
   };
 
   print(zawodnicy);
-
   cout << endl;
 
-  auto zaw = zawodnicy.extract(2);
+  int zmianaZespolPodstawowy = dist1_5(gen);
+  int zmianaZespolRezerwowy = dist6_12(gen);
+  cout << zmianaZespolPodstawowy << "<->" << zmianaZespolRezerwowy << endl;
+
+  auto zawRez = zawodnicy.extract(zmianaZespolRezerwowy);
+  auto zawPod = zawodnicy.extract(zmianaZespolPodstawowy);
   
-  zaw.key() = 20;
-  zawodnicy.insert(move(zaw));
+  zawRez.key() = zmianaZespolPodstawowy;
+  zawodnicy.insert(move(zawRez));
+
+  zawPod.key() = zmianaZespolRezerwowy;
+  zawodnicy.insert(move(zawPod));
+
+  print(zawodnicy);
+  cout << endl;
+
+  zmianaZespolPodstawowy = dist1_5(gen);
+  zmianaZespolRezerwowy = dist6_12(gen);
+  cout << zmianaZespolPodstawowy << "<->" << zmianaZespolRezerwowy << endl;
+
+  zawRez = zawodnicy.extract(zmianaZespolRezerwowy);
+  zawPod = zawodnicy.extract(zmianaZespolPodstawowy);
+  
+  zawRez.key() = zmianaZespolPodstawowy;
+  zawodnicy.insert(move(zawRez));
+
+  zawPod.key() = zmianaZespolRezerwowy;
+  zawodnicy.insert(move(zawPod));
 
   print(zawodnicy);
 }
