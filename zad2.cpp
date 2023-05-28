@@ -11,11 +11,6 @@ void print(const M &zawodnicy){
 }
 
 int main(){
-  return 0;
-}
-
-
-int main(){
   map<int, string> zawodnicy {
     {1, "Marek"},
     {2, "Tom"},
