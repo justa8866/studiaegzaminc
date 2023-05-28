@@ -50,4 +50,20 @@ int main(){
   zawodnicy.insert(move(zawPod));
 
   print(zawodnicy);
+  cout << endl;
+
+  zmianaZespolPodstawowy = dist1_5(gen);
+  zmianaZespolRezerwowy = dist6_12(gen);
+  cout << zmianaZespolPodstawowy << "<->" << zmianaZespolRezerwowy << endl;
+
+  zawRez = zawodnicy.extract(zmianaZespolRezerwowy);
+  zawPod = zawodnicy.extract(zmianaZespolPodstawowy);
+  
+  zawRez.key() = zmianaZespolPodstawowy;
+  zawodnicy.insert(move(zawRez));
+
+  zawPod.key() = zmianaZespolRezerwowy;
+  zawodnicy.insert(move(zawPod));
+
+  print(zawodnicy);
 }
