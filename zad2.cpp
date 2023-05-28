@@ -34,16 +34,20 @@ int main(){
   };
 
   print(zawodnicy);
-
   cout << endl;
 
-  auto zaw = zawodnicy.extract(2);
-  
-  zaw.key() = 20;
-  zawodnicy.insert(move(zaw));
+  int zmianaZespolPodstawowy = dist1_5(gen);
+  int zmianaZespolRezerwowy = dist6_12(gen);
+  cout << zmianaZespolPodstawowy << "<->" << zmianaZespolRezerwowy << endl;
 
-  int random = dist1_5(gen);
-  cout << random;
+  auto zawRez = zawodnicy.extract(zmianaZespolRezerwowy);
+  auto zawPod = zawodnicy.extract(zmianaZespolPodstawowy);
+  
+  zawRez.key() = zmianaZespolPodstawowy;
+  zawodnicy.insert(move(zawRez));
+
+  zawPod.key() = zmianaZespolRezerwowy;
+  zawodnicy.insert(move(zawPod));
 
   print(zawodnicy);
 }
