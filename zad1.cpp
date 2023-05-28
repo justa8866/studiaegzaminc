@@ -60,6 +60,7 @@ int main(){
   league2.clear();
 
   showPlayerVectorContent(league1);
+  showPlayerVectorContent(league2);
 
   return 0;
 }

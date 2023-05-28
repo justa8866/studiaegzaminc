@@ -21,7 +21,9 @@ int main(){
     {7, "Roman"},
     {8, "Sławek"},
     {9, "Filip"},
-    {10, "Irek"}
+    {10, "Irek"},
+    {11, "Filip"},
+    {12, "Irek"}
   };
 
   print(zawodnicy);
