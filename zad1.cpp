@@ -15,6 +15,8 @@ void showPlayerVectorContent(vector<Player> wektor) {
   for(const auto& player : wektor){
     cout << "Nazwa: " << player.name << " ID: " << player.id << " skills: " << player.skills << endl;
   }
+
+  cout << endl;
 }
 
 bool compareById(const Player& playerA, const Player& playerB) {
